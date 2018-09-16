@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Home from './pages/Home'
 import Partner from './pages/Partner'
+import Product from './pages/Product'
 
 export default class App extends Component {
   state = {
@@ -19,7 +20,13 @@ export default class App extends Component {
 
   loadPartnerScreen = (id) => {
     this.setState({
-      screen: <Partner id={id} />
+      screen: <Partner productScreen={this.loadProductScreen}  id={id} />
+    })
+  }
+
+  loadProductScreen = (props) => {
+    this.setState({
+      screen: <Product {...props} />
     })
   }
   

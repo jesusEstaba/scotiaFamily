@@ -14,12 +14,16 @@ export default class ProductList extends Component {
             })
     }
 
+    selectProduct = (props) => {
+        this.props.productScreen(props)
+    }
+
     render() {
         return (
             <section className="row">
                 {
                     this.state.products.map(product => 
-                        <div className="col-sm-6">
+                        <div onClick={() => { this.selectProduct(product) }} className="col-sm-6">
                             <div className="card">
                                 <img src={product.image} className="img-fluid"/>
                                 {product.points}

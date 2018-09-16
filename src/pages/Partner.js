@@ -6,7 +6,7 @@ export default class Partner extends Component {
   render() {
     return (
       <main>
-        <ProductList id={this.props.id} />
+        <ProductList productScreen={this.props.productScreen} id={this.props.id} />
       </main>
     );
   }
