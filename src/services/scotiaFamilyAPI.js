@@ -1,11 +1,11 @@
 const scotiaFamiliaAPI = {
-    endpoint: (resource) => {
+    endpoint: (resource, options={}) => {
         const url = `http://scotiafamily-rakzodia.c9users.io:8081/${resource}`
-        return fetch(url).then(response => response.json())
+        return fetch(url, options).then(response => response.json())
     },
-    auth: (identifier, password, cb) => {
+    auth: (identifier, password, cb, refresh=false) => {
         
-        if (localStorage.getItem('user')) {
+        if (localStorage.getItem('user') && !refresh) {
             return cb( JSON.parse(localStorage.getItem('user')) )
         }
         
@@ -23,6 +23,8 @@ const scotiaFamiliaAPI = {
                         Authorization: `Bearer ${jwt}`
                     }
                 }
+
+                localStorage.setItem('jwt', jwt)
                 
                 return fetch('http://scotiafamily-rakzodia.c9users.io:8081/user/me', options)
             })
@@ -30,6 +32,21 @@ const scotiaFamiliaAPI = {
             .then(userAuthenticated=>{
                 localStorage.setItem('user', JSON.stringify(userAuthenticated))
                 cb()
+            })
+    },
+    update: () => {
+
+        const jwt = localStorage.getItem('jwt')
+        const options = {
+            headers: {
+                Authorization: `Bearer ${jwt}`
+            }
+        }
+
+        fetch('http://scotiafamily-rakzodia.c9users.io:8081/user/me', options)
+            .then(r=>r.json())
+            .then(userAuthenticated=>{
+                localStorage.setItem('user', JSON.stringify(userAuthenticated))
             })
     }
 }
