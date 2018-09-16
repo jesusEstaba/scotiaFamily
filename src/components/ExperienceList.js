@@ -15,7 +15,7 @@ export default class ExperienceList extends Component {
 
     render() {
         return (
-            <section className="scroll py-3">
+            <section className="scroll py-4 bg-light">
                 {
                     this.state.experiences.map(experience => <Experience {...experience} />)
                 }

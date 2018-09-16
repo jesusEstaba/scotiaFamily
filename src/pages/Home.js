@@ -8,7 +8,7 @@ export default class Home extends Component {
     return (
       <main>
         <ExperienceList />
-        <PartnerList />
+        <PartnerList partnerScreen={this.props.partnerScreen} />
       </main>
     );
   }

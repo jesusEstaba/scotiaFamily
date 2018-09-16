@@ -15,9 +15,9 @@ export default class PartnerList extends Component {
 
     render() {
         return (
-            <section className="scroll py-3">
+            <section className="scroll py-4">
                 {
-                    this.state.partners.map(partner => <Partner {...partner} />)
+                    this.state.partners.map(partner => <Partner partnerScreen={this.props.partnerScreen} {...partner} />)
                 }
             </section>
         );
