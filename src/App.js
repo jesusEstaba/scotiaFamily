@@ -2,17 +2,26 @@ import React, { Component } from 'react';
 import Home from './pages/Home'
 import Partner from './pages/Partner'
 import Product from './pages/Product'
+import Login from './pages/Login'
 
 export default class App extends Component {
-  state = {
-
-  }
+  state = {}
 
   componentDidMount = () => {
     this.loadHomeScreen()
   }
 
   loadHomeScreen = () => {
+    if (!localStorage.getItem('user')) {
+      this.setState({
+        screen: <Login 
+          homeScreen={this.loadHomeScreen}
+        />
+      })
+
+      return;
+    }
+
     this.setState({
       screen: <Home 
         partnerScreen={this.loadPartnerScreen}
