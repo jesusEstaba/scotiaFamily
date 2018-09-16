@@ -7,7 +7,7 @@ export default class Home extends Component {
   render() {
     return (
       <main>
-        <ExperienceList />
+        <ExperienceList experienceScreen={this.props.experienceScreen} />
         <PartnerList partnerScreen={this.props.partnerScreen} />
       </main>
     );

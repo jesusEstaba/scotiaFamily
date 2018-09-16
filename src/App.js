@@ -14,7 +14,10 @@ export default class App extends Component {
 
   loadHomeScreen = () => {
     this.setState({
-      screen: <Home partnerScreen={this.loadPartnerScreen} />
+      screen: <Home 
+        partnerScreen={this.loadPartnerScreen}
+        experienceScreen={this.loadExperienceScreen} 
+      />
     })
   }
 
@@ -30,6 +33,12 @@ export default class App extends Component {
     })
   }
   
+  loadExperienceScreen = (props) => {
+    this.setState({
+      screen: <Product {...props} />
+    })
+  }
+
   render() {
     return (
       <div>
